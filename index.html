@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zgs7157 · Home</title>
+<meta name="description" content="zgs7157 的个人主页与开源项目门户">
+<style>
+  :root{
+    --bg:#070b12;
+    --bg-soft:#0c121c;
+    --card:rgba(18,26,38,.72);
+    --card-border:rgba(120,170,220,.14);
+    --text:#e6edf3;
+    --text-dim:#93a1b3;
+    --accent:#38e0c8;
+    --accent-2:#5aa9ff;
+    --accent-3:#a78bfa;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  .bg{position:fixed;inset:0;z-index:-1;pointer-events:none}
+  .bg::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(720px 480px at 12% -8%,rgba(56,224,200,.14),transparent 60%),
+      radial-gradient(760px 520px at 92% 4%,rgba(90,169,255,.13),transparent 60%),
+      radial-gradient(680px 520px at 50% 110%,rgba(167,139,250,.10),transparent 60%);
+  }
+  .bg::after{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(120,170,220,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(120,170,220,.05) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  header{padding:84px 0 40px}
+  .hero{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+  .avatar{
+    width:108px;height:108px;border-radius:26px;
+    border:1px solid var(--card-border);
+    background:var(--bg-soft);
+    object-fit:cover;
+    box-shadow:0 0 40px rgba(56,224,200,.18);
+  }
+  .hero-text{flex:1;min-width:260px}
+  .eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.18em;text-transform:uppercase}
+  h1{font-size:38px;font-weight:700;margin:8px 0 6px;letter-spacing:.01em}
+  h1 .handle{color:var(--text-dim);font-weight:500}
+  .bio{color:var(--text-dim);max-width:560px;font-size:16px}
+  .actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:12px;font-size:14px;text-decoration:none;
+    border:1px solid var(--card-border);color:var(--text);
+    background:var(--card);transition:.2s;
+  }
+  .btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04121a;border:none;font-weight:600}
+  .btn.primary:hover{filter:brightness(1.1)}
+  .btn svg{width:16px;height:16px}
+
+  section{padding:28px 0 12px}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+  .section-head h2{font-size:22px;font-weight:600}
+  .section-head .count{font-family:var(--mono);color:var(--text-dim);font-size:13px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+  .card{
+    background:var(--card);border:1px solid var(--card-border);
+    border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px;
+    backdrop-filter:blur(8px);transition:.22s;
+  }
+  .card:hover{border-color:rgba(56,224,200,.35);transform:translateY(-4px);box-shadow:0 12px 34px rgba(0,0,0,.35)}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card h3{font-size:17px;font-weight:600}
+  .lang{
+    font-family:var(--mono);font-size:11.5px;color:var(--accent-2);
+    border:1px solid rgba(90,169,255,.25);border-radius:8px;padding:3px 9px;white-space:nowrap;
+  }
+  .card p{color:var(--text-dim);font-size:14px;flex:1}
+  .card-links{display:flex;gap:14px;flex-wrap:wrap}
+  .card-links a{font-size:13.5px;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .card-links a:hover{text-decoration:underline}
+  .card-links a.alt{color:var(--text-dim)}
+
+  footer{margin-top:56px;padding:28px 0 40px;border-top:1px solid var(--card-border);color:var(--text-dim);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer .mono{font-family:var(--mono)}
+
+  @media (max-width:560px){
+    header{padding:56px 0 28px}
+    h1{font-size:28px}
+    .avatar{width:84px;height:84px}
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<header>
+  <div class="wrap hero">
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/306188970?v=4" alt="zgs7157 avatar" onerror="this.style.display='none'">
+    <div class="hero-text">
+      <div class="eyebrow">// personal homepage</div>
+      <h1>chenyu zhen <span class="handle">@zgs7157</span></h1>
+      <p class="bio">开发者，专注网络工具、跨端文件传输、安全防护与虚拟机折腾。这里汇总我公开的开源项目与在线站点。</p>
+      <div class="actions">
+        <a class="btn primary" href="https://github.com/zgs7157" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="mailto:chenzeyu30@outlook.com">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3h13A1.5 1.5 0 0 1 16 4.5v7A1.5 1.5 0 0 1 14.5 13h-13A1.5 1.5 0 0 1 0 11.5v-7A1.5 1.5 0 0 1 1.5 3zm.7 1.2L8 8.1l5.8-3.9a.75.75 0 0 0-.45-.2H2.65a.75.75 0 0 0-.45.2zM14.5 5.3L8.3 9.6a.75.75 0 0 1-.8 0L1.5 5.3v6.25c0 .14.11.25.25.25h12.5c.14 0 .25-.11.25-.25V5.3z"/></svg>
+          chenzeyu30@outlook.com
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <div class="section-head">
+      <h2>开源项目</h2>
+      <span class="count">/ projects</span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top">
+          <h3>N2N LAN Pro</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>虚拟局域网专业版：网络诊断、连接审计、房间库与高级参数，房间码与免费版互通。</p>
+        <div class="card-links">
+          <a href="https://zgs7157.github.io/n2n-lan-pro/" target="_blank" rel="noopener">在线站点 ↗</a>
+          <a class="alt" href="https://github.com/zgs7157/n2n-lan-pro" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>N2N LAN</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>基于 n2n 的 MC 局域网联机工具，房间式虚拟局域网，方便伙伴跨网联机。</p>
+        <div class="card-links">
+          <a href="https://zgs7157.github.io/n2n-lan/" target="_blank" rel="noopener">在线站点 ↗</a>
+          <a class="alt" href="https://github.com/zgs7157/n2n-lan" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>CrossDrop</h3>
+          <span class="lang">JavaScript</span>
+        </div>
+        <p>跨网快传：两台电脑或手机之间跨局域网、跨地区直接互传文件，WebRTC 点对点加密，含 Windows 安装程序与手机网页版。</p>
+        <div class="card-links">
+          <a class="alt" href="https://github.com/zgs7157/crossdrop" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>SafeBrowse</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>沙箱防护浏览器：黑名单 / 启发式拦截、下载检疫、看门狗应急熔断（Windows）。</p>
+        <div class="card-links">
+          <a class="alt" href="https://github.com/zgs7157/SafeBrowse" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>GameDock</h3>
+          <span class="lang">C# · .NET 8</span>
+        </div>
+        <p>MC 版本与加载器「下载即导入」工具：多镜像自动回退、SHA1 校验，一键导入 PCL2 / HMCL / FCL 目录，含 CLI 与 GUI。</p>
+        <div class="card-links">
+          <a class="alt" href="https://github.com/zgs7157/GameDock" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>CraftLaunch</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>零第三方依赖的 MC Java 版离线启动器：版本下载、自动匹配 Java、模组 / 光影 / 资源包管理，带深色图形界面。</p>
+        <div class="card-links">
+          <a class="alt" href="https://github.com/zgs7157/Craftlaunch" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Orange Mall</h3>
+          <span class="lang">HTML</span>
+        </div>
+        <p>开源演示购物网站：商品展示、搜索筛选、购物车本地持久化，纯前端实现，可免费部署到 Pages。</p>
+        <div class="card-links">
+          <a class="alt" href="https://github.com/zgs7157/orange-mall" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>kail</h3>
+          <span class="lang">Shell</span>
+        </div>
+        <p>Kali 远程桌面环境搭建脚本。</p>
+        <div class="card-links">
+          <a class="alt" href="https://github.com/zgs7157/kail" target="_blank" rel="noopener">源码仓库</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 zgs7157 · chenyu zhen</span>
+    <span class="mono">deployed on GitHub Pages</span>
+  </div>
+</footer>
+</body>
+</html>
